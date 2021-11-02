@@ -1,16 +1,11 @@
 package com.kevin.garden;
 
 import android.annotation.SuppressLint;
-
-import android.content.Intent;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
-
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,10 +34,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Random;
+import java.util.TimeZone;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -61,11 +58,16 @@ public class Dashboard extends AppCompatActivity {
     TextView light, syncLight;
     TextView moisture, syncMoisture;
 
-    TextView dtem, dlight;
 
-    Button devices, plants, schedule;
+    TextView plantName;
+    TextView maxTemp, maxHumid, maxLight, maxMois;
 
+    Button devices, plants, schedule, reload;
 
+    int MAX_TEMPERATUE = 0;
+    int MAX_HUMIDITY = 0;
+    int MAX_LIGHT = 0;
+    int MAX_MOIS = 0;
 
 
 
@@ -93,39 +95,38 @@ public class Dashboard extends AppCompatActivity {
 
 
 
-        devices.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Dashboard.this, Devices.class);
-                startActivity(intent);
-            }
+        devices.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, Devices.class);
+            startActivity(intent);
         });
 
-        plants.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Dashboard.this, Plants.class);
-                startActivity(intent);
-            }
+        plants.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, Plants.class);
+            startActivity(intent);
         });
 
 
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SharedPreferences preferences = getSharedPreferences("remember", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("remember", "false");
-                editor.apply();
-                Toast.makeText(Dashboard.this, "Logged out!!!", Toast.LENGTH_SHORT).show();
-                finish();
+        logout.setOnClickListener(v -> {
+            SharedPreferences preferences = getSharedPreferences("remember", MODE_PRIVATE);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("remember", "false");
+            editor.apply();
+            Toast.makeText(Dashboard.this, "Logged out!!!", Toast.LENGTH_SHORT).show();
+            finish();
 
-            }
+        });
+
+        reload.setOnClickListener(v -> {
+            getLastValue("bbc-temp");
+            getLastValue("bbc-humid");
+            getLastValue("bbc-light");
+            getLastValue("bbc-mois");
         });
 
 
     }
 
+    @SuppressLint("SetTextI18n")
     public void init()
     {
         user_name = findViewById(R.id.user_name);
@@ -156,11 +157,56 @@ public class Dashboard extends AppCompatActivity {
 
         schedule = findViewById(R.id.schedule);
 
-        dtem = findViewById(R.id.dtemp);
-        dlight = findViewById(R.id.dlight);
-        dtem.setText(getSharedPreferences("plant", MODE_PRIVATE).getString("max_temp", "Nothing"));
-        dlight.setText(getSharedPreferences("plant", MODE_PRIVATE).getString("max_light", "Nothing"));
+        maxTemp = findViewById(R.id.max_temperature);
+        maxHumid = findViewById(R.id.max_humidity);
+        maxLight = findViewById(R.id.max_light);
+        maxMois = findViewById(R.id.max_moisture);
 
+
+
+        maxLight.setText(getSharedPreferences("plant", MODE_PRIVATE)
+                .getString("max_light", "####") + " cd");
+        maxMois.setText(getSharedPreferences("plant", MODE_PRIVATE)
+                .getString("max_mois", "####") + " %");
+
+        String buffer = getSharedPreferences("plant", MODE_PRIVATE).getString("max_temp", "####");
+        if(!buffer.equals("####"))
+        {
+            MAX_TEMPERATUE = Integer.parseInt(buffer);
+        }
+        maxTemp.setText(buffer + " °C");
+
+        buffer = getSharedPreferences("plant", MODE_PRIVATE)
+                        .getString("max_humid", "####");
+        if(!buffer.equals("####"))
+        {
+            MAX_HUMIDITY = Integer.parseInt(buffer);
+        }
+        maxHumid.setText(buffer + " %");
+
+        buffer = getSharedPreferences("plant", MODE_PRIVATE)
+                .getString("max_light", "####");
+        if(!buffer.equals("####"))
+        {
+            MAX_LIGHT = Integer.parseInt(buffer);
+        }
+        maxLight.setText(buffer + " cd");
+
+        buffer = getSharedPreferences("plant", MODE_PRIVATE)
+                .getString("max_mois", "####");
+        if(!buffer.equals("####"))
+        {
+            MAX_MOIS = Integer.parseInt(buffer);
+        }
+        maxMois.setText(buffer + " %");
+
+
+
+
+        reload = findViewById(R.id.reload);
+
+        plantName = findViewById(R.id.plantName);
+        plantName.setText(getSharedPreferences("plant", MODE_PRIVATE).getString("plant_name", "Nothing"));
 
 
 //        temp.setText(sharedPreferences.getString("temp", "Waiting"));
@@ -188,7 +234,7 @@ public class Dashboard extends AppCompatActivity {
 
                 Log.d("mqtt", "Message: " + message.toString());
 
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                 LocalDateTime now = LocalDateTime.now();
                 String time = dtf.format(now);
 
@@ -200,6 +246,10 @@ public class Dashboard extends AppCompatActivity {
                 if(topic.contains("temp")) {
                     temperature.setText(message.toString() + " °C");
                     syncTemperature.setText("Last synced\n" + time);
+                    if(Integer.parseInt(message.toString()) > MAX_TEMPERATUE)
+                    {
+                        pushNotification("Temperature", "sdhfjdasfj");
+                    }
 
                 }
                 else if(topic.contains("humid"))
@@ -217,6 +267,27 @@ public class Dashboard extends AppCompatActivity {
                     moisture.setText(message.toString() + " %");
                     syncMoisture.setText("Last synced\n" + time);
                 }
+//                else if(topic.contains("pump"))
+//                {
+//                    sharedPreferences = getSharedPreferences("devices", MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.putString("pump", message.toString());
+//
+//                }
+//                else if(topic.contains("awning"))
+//                {
+//                    sharedPreferences = getSharedPreferences("devices", MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.putString("awning", message.toString());
+//
+//                }
+//                else if(topic.contains("fan"))
+//                {
+//                    sharedPreferences = getSharedPreferences("devices", MODE_PRIVATE);
+//                    SharedPreferences.Editor editor = sharedPreferences.edit();
+//                    editor.putString("fan", message.toString());
+//
+//                }
 
             }
 
@@ -271,11 +342,13 @@ public class Dashboard extends AppCompatActivity {
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        Log.d("mqtt", "Response : "+ response.substring(0,250));
+                        //Log.d("mqtt", "Response : "+ response.substring(0,250));
+
                         if(!response.equals(""))
                         {
                             int left = 0;
@@ -286,7 +359,7 @@ public class Dashboard extends AppCompatActivity {
                             if(left != right)
                             {
                                 data = response.substring(left, right + 1);
-                                Log.d("mqtt", "data = " + data);
+                                //Log.d("mqtt", "data = " + data);
                                 try {
                                     JSONObject jsonObject = new JSONObject(data);
 
@@ -295,25 +368,50 @@ public class Dashboard extends AppCompatActivity {
                                     time = time.replace("T", " ");
                                     time = time.replace("Z", "");
 
+
+
+                                    Log.d("mqtt", "time: "  + time);
+
+
                                     if(feed_key.contains("temp"))
                                     {
                                         temperature.setText(value + " °C");
                                         syncTemperature.setText("Last synced\n" + time);
+                                        if(Integer.parseInt(value) > MAX_TEMPERATUE)
+                                        {
+                                            pushNotification("High Temperature", "Curent: "
+                                                    + value + " °C. Max: " + MAX_TEMPERATUE + " °C");
+                                        }
                                     }
                                     else if(feed_key.contains("humid"))
                                     {
                                         humidity.setText(value + " %");
                                         syncHumidity.setText("Last synced\n" + time);
+                                        if(Integer.parseInt(value) > MAX_HUMIDITY)
+                                        {
+                                            pushNotification("High Humidity", "Curent: "
+                                                    + value + " %. Max: " + MAX_HUMIDITY + " %");
+                                        }
                                     }
                                     else if(feed_key.contains("light"))
                                     {
                                         light.setText(value + " cd");
                                         syncLight.setText("Last synced\n" + time);
+                                        if(Integer.parseInt(value) > MAX_LIGHT)
+                                        {
+                                            pushNotification("High Light Intensity", "Curent: "
+                                                    + value + " cd. Max: " + MAX_LIGHT + " cd");
+                                        }
                                     }
                                     else if(feed_key.contains("mois"))
                                     {
                                         moisture.setText(value + " %");
                                         syncMoisture.setText("Last synced\n" + time);
+                                        if(Integer.parseInt(value) > MAX_MOIS)
+                                        {
+                                            pushNotification("High soil moisture", "Curent: "
+                                                    + value + " %. Max: " + MAX_MOIS + " %");
+                                        }
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -26,12 +25,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ellipse_11"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
 
         />
 
@@ -42,13 +41,12 @@
         android:background="@drawable/undraw_playful_cat_re_bxiu_1"
 
 
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintVertical_bias="0"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
 
     <TextView
         android:id="@+id/textView5"
@@ -84,8 +82,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_light"
-        android:text="user email"
         android:gravity="center"
+        android:text="user email"
         android:textSize="15sp"
 
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -96,18 +94,18 @@
 
 
     <!--    <com.github.mikephil.charting.charts.LineChart-->
-<!--        android:id="@+id/chart"-->
-<!--        android:layout_width="350dp"-->
-<!--        android:layout_height="300dp"-->
+    <!--        android:id="@+id/chart"-->
+    <!--        android:layout_width="350dp"-->
+    <!--        android:layout_height="300dp"-->
 
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.653"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--        app:layout_constraintRight_toRightOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintVertical_bias="0.653"-->
 
-<!--        />-->
+    <!--        />-->
 
 
     <TextView
@@ -138,50 +136,32 @@
 
         />
 
+
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/plantName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
 
         android:text="Plant: "
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/homeShape"
+        app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="@+id/homeShape"
         app:layout_constraintTop_toTopOf="@+id/homeShape" />
 
-    <TextView
-        android:id="@+id/details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:gravity="left"
-        android:text="Details: "
-        app:layout_constraintStart_toStartOf="@+id/shapeTemp"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+    <Button
+        android:id="@+id/reload"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/baseline_restart_alt_24"
+        app:layout_constraintEnd_toEndOf="@+id/homeShape"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="@+id/homeShape"
 
-    <TextView
-        android:id="@+id/dtemp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="28dp"
-        android:gravity="left"
-        android:text="Temperature: "
-        app:layout_constraintStart_toStartOf="@+id/shapeTemp"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <TextView
-        android:id="@+id/dlight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="28dp"
-        android:gravity="left"
-        android:text="Light: "
-        app:layout_constraintStart_toStartOf="@+id/shapeTemp"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toTopOf="@+id/homeShape" />
 
     <ImageView
         android:id="@+id/shapeTemp"
@@ -196,7 +176,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="@+id/homeShape"
         app:layout_constraintTop_toTopOf="@+id/homeShape"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <ImageView
         android:id="@+id/shapeHumid"
@@ -221,8 +201,7 @@
 
         android:background="@drawable/shape"
         app:layout_constraintStart_toStartOf="@+id/shapeTemp"
-        app:layout_constraintTop_toBottomOf="@+id/shapeTemp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/shapeTemp" />
 
 
     <ImageView
@@ -240,25 +219,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/poppins"
-        android:text="Humidity"
         android:drawableStart="@drawable/humidity"
         android:drawablePadding="5dp"
+        android:fontFamily="@font/poppins"
+        android:text="Humidity"
         app:layout_constraintEnd_toEndOf="@+id/shapeHumid"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="@+id/shapeHumid"
-        app:layout_constraintTop_toTopOf="@+id/shapeHumid"
-        />
+        app:layout_constraintTop_toTopOf="@+id/shapeHumid" />
 
 
     <TextView
         android:id="@+id/humid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:drawablePadding="5dp"
 
-        android:fontFamily="@font/poppins_medium"
+
         android:text="Waiting"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/shapeHumid"
@@ -271,42 +249,42 @@
         android:id="@+id/syncHumid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
 
+        android:layout_marginTop="10dp"
         android:drawablePadding="5dp"
         android:fontFamily="@font/poppins_medium"
-        android:gravity="center"
 
+        android:gravity="center"
         android:text="Waiting"
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="@+id/shapeHumid"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/shapeHumid"
-        app:layout_constraintTop_toBottomOf="@+id/humid" />
+        app:layout_constraintTop_toBottomOf="@+id/max_humidity" />
 
     <TextView
         android:id="@+id/titleLight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/poppins"
-        android:text="Light Intensity"
         android:drawableStart="@drawable/ic_baseline_wb_incandescent_24"
         android:drawablePadding="5dp"
+        android:fontFamily="@font/poppins"
+        android:text="Light Intensity"
         app:layout_constraintEnd_toEndOf="@+id/shapeLight"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="@+id/shapeLight"
-        app:layout_constraintTop_toTopOf="@+id/shapeLight"
-        />
+        app:layout_constraintTop_toTopOf="@+id/shapeLight" />
 
 
     <TextView
         android:id="@+id/light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:drawablePadding="5dp"
 
-        android:fontFamily="@font/poppins_medium"
+
         android:text="Waiting"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/shapeLight"
@@ -319,43 +297,42 @@
         android:id="@+id/syncLight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
 
+        android:layout_marginTop="10dp"
         android:drawablePadding="5dp"
         android:fontFamily="@font/poppins_medium"
-        android:gravity="center"
 
+        android:gravity="center"
         android:text="Waiting"
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="@+id/shapeLight"
+        app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="@+id/shapeLight"
-        app:layout_constraintTop_toBottomOf="@+id/light" />
-
+        app:layout_constraintTop_toBottomOf="@+id/max_light" />
 
     <TextView
         android:id="@+id/titleMois"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/poppins"
-        android:text="Soil Moisture"
         android:drawableStart="@drawable/soil_moisture"
         android:drawablePadding="5dp"
+        android:fontFamily="@font/poppins"
+        android:text="Soil Moisture"
         app:layout_constraintEnd_toEndOf="@+id/shapeMois"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="@+id/shapeMois"
-        app:layout_constraintTop_toTopOf="@+id/shapeMois"
-        />
+        app:layout_constraintTop_toTopOf="@+id/shapeMois" />
 
 
     <TextView
         android:id="@+id/mois"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:drawablePadding="5dp"
 
-        android:fontFamily="@font/poppins_medium"
+
         android:text="Waiting"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/shapeMois"
@@ -368,44 +345,42 @@
         android:id="@+id/syncMois"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
 
+        android:layout_marginTop="10dp"
         android:drawablePadding="5dp"
         android:fontFamily="@font/poppins_medium"
-        android:gravity="center"
 
+        android:gravity="center"
         android:text="Waiting"
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="@+id/shapeMois"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/shapeMois"
-        app:layout_constraintTop_toBottomOf="@+id/mois" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/max_moisture" />
 
     <TextView
         android:id="@+id/titleTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:fontFamily="@font/poppins"
-        android:text="Temperature"
         android:drawableStart="@drawable/ic_baseline_wb_sunny_24"
         android:drawablePadding="5dp"
+        android:fontFamily="@font/poppins"
+        android:text="Temperature"
         app:layout_constraintEnd_toEndOf="@+id/shapeTemp"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="@+id/shapeTemp"
-        app:layout_constraintTop_toTopOf="@+id/shapeTemp"
-        />
+        app:layout_constraintTop_toTopOf="@+id/shapeTemp" />
 
 
     <TextView
         android:id="@+id/temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:drawablePadding="5dp"
 
-        android:fontFamily="@font/poppins_medium"
+
         android:text="Waiting"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="@+id/shapeTemp"
@@ -418,18 +393,18 @@
         android:id="@+id/syncTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
 
+        android:layout_marginTop="10dp"
         android:drawablePadding="5dp"
         android:fontFamily="@font/poppins_medium"
-        android:gravity="center"
 
+        android:gravity="center"
         android:text="Waiting"
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="@+id/shapeTemp"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/shapeTemp"
-        app:layout_constraintTop_toBottomOf="@+id/temp" />
-
+        app:layout_constraintTop_toBottomOf="@+id/max_temperature" />
 
     <Button
         android:id="@+id/logout"
@@ -492,6 +467,55 @@
         android:textColor="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="@+id/devices"
         app:layout_constraintStart_toEndOf="@+id/devices" />
+
+
+    <TextView
+        android:id="@+id/max_temperature"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+
+        android:text="max"
+        app:layout_constraintEnd_toEndOf="@+id/shapeTemp"
+        app:layout_constraintStart_toStartOf="@+id/shapeTemp"
+        app:layout_constraintTop_toBottomOf="@+id/temp" />
+
+    <TextView
+        android:id="@+id/max_humidity"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+
+        android:text="max"
+        app:layout_constraintEnd_toEndOf="@+id/shapeHumid"
+        app:layout_constraintStart_toStartOf="@+id/shapeHumid"
+        app:layout_constraintTop_toBottomOf="@+id/humid" />
+
+    <TextView
+        android:id="@+id/max_light"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+
+        android:text="max"
+        app:layout_constraintEnd_toEndOf="@+id/shapeLight"
+        app:layout_constraintStart_toStartOf="@+id/shapeLight"
+        app:layout_constraintTop_toBottomOf="@+id/light" />
+
+    <TextView
+        android:id="@+id/max_moisture"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+
+        android:text="max"
+        app:layout_constraintEnd_toEndOf="@+id/shapeMois"
+        app:layout_constraintStart_toStartOf="@+id/shapeMois"
+        app:layout_constraintTop_toBottomOf="@+id/mois" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

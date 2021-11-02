@@ -77,10 +77,10 @@ public class Plants extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
                 String buffer = inputName.getText().toString();
-                if(!buffer.equals(""))
-                {
+                if(!buffer.equals("")) {
                     editor.putString("plant_name", buffer);
                 }
+
 
                 buffer = inputTemperature.getText().toString();
                 if(!buffer.equals("")){
