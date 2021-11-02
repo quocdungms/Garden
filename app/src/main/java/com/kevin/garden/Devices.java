@@ -15,7 +15,7 @@ public class Devices extends AppCompatActivity {
 
     TextView username, email;
 
-    Switch sw_pump, sw_awning;
+    Switch sw_pump, sw_awning, sw_fan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +56,21 @@ public class Devices extends AppCompatActivity {
             }
         });
 
+        sw_fan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    Toast.makeText(Devices.this, "Fan is ON", Toast.LENGTH_SHORT).show();
+
+                }
+                else
+                {
+                    Toast.makeText(Devices.this, "Fan is OFF", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
     public void initial()
@@ -67,5 +82,6 @@ public class Devices extends AppCompatActivity {
 
         sw_pump = findViewById(R.id.sw_pump);
         sw_awning = findViewById(R.id.sw_awning);
+        sw_fan = findViewById(R.id.sw_fan);
     }
 }

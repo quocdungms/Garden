@@ -18,7 +18,9 @@
         <entry key="app/src/main/res/drawable/ic_baseline_wb_cloudy_24.xml" value="0.23585526315789473" />
         <entry key="app/src/main/res/drawable/ic_baseline_wb_incandescent_24.xml" value="0.23585526315789473" />
         <entry key="app/src/main/res/drawable/ic_baseline_wb_sunny_24.xml" value="0.23585526315789473" />
+        <entry key="app/src/main/res/drawable/ic_fan.xml" value="0.23585526315789473" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.23585526315789473" />
+        <entry key="app/src/main/res/drawable/ic_plant.xml" value="0.23585526315789473" />
         <entry key="app/src/main/res/drawable/login.xml" value="0.23585526315789473" />
         <entry key="app/src/main/res/drawable/pump.xml" value="0.23585526315789473" />
         <entry key="app/src/main/res/drawable/rectangle_6.xml" value="0.23585526315789473" />
@@ -26,6 +28,7 @@
         <entry key="app/src/main/res/drawable/sanitizer_black_24dp.xml" value="0.23585526315789473" />
         <entry key="app/src/main/res/drawable/shape.xml" value="0.23585526315789473" />
         <entry key="app/src/main/res/drawable/shape_devices.xml" value="0.23585526315789473" />
+        <entry key="app/src/main/res/drawable/shape_plants.xml" value="0.23585526315789473" />
         <entry key="app/src/main/res/drawable/sharp_hub_24.xml" value="0.23585526315789473" />
         <entry key="app/src/main/res/drawable/soil_moisture.xml" value="0.23585526315789473" />
         <entry key="app/src/main/res/drawable/toggle_selector.xml" value="0.23585526315789473" />
@@ -36,8 +39,9 @@
         <entry key="app/src/main/res/font-v26/poppins.xml" value="0.38645833333333335" />
         <entry key="app/src/main/res/font/poppins.xml" value="0.38645833333333335" />
         <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.35625" />
-        <entry key="app/src/main/res/layout/activity_devices.xml" value="0.2256578947368421" />
+        <entry key="app/src/main/res/layout/activity_devices.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_plants.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.35625" />
       </map>
     </option>

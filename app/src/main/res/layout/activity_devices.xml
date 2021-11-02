@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
     <TextView
-        android:id="@+id/shape_devices"
+        android:id="@+id/shape_plants"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/home_shape"
@@ -107,10 +107,10 @@
         android:fontFamily="@font/poppins"
         android:text="Devices"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/shape_devices"
-        app:layout_constraintEnd_toEndOf="@+id/shape_devices"
+        app:layout_constraintBottom_toTopOf="@+id/shape_plants"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/shape_devices"
+        app:layout_constraintStart_toStartOf="@+id/shape_plants"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="0.29000002" />
 
@@ -124,10 +124,10 @@
 
         android:drawablePadding="20sp"
         android:paddingStart="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/shape_devices"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
         app:layout_constraintHorizontal_bias="0.533"
-        app:layout_constraintStart_toStartOf="@+id/shape_devices"
-        app:layout_constraintTop_toTopOf="@+id/shape_devices" />
+        app:layout_constraintStart_toStartOf="@+id/shape_plants"
+        app:layout_constraintTop_toTopOf="@+id/shape_plants" />
 
     <TextView
         android:id="@+id/title_awning"
@@ -165,10 +165,10 @@
 
         android:drawablePadding="20sp"
         android:paddingStart="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/shape_devices"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
         app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@+id/shape_devices"
-        app:layout_constraintTop_toTopOf="@+id/shape_devices" />
+        app:layout_constraintStart_toStartOf="@+id/shape_plants"
+        app:layout_constraintTop_toTopOf="@+id/shape_plants" />
 
     <TextView
         android:id="@+id/title_pump"
@@ -192,6 +192,48 @@
         app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="@+id/shape_water_pump"
         app:layout_constraintTop_toTopOf="@+id/shape_water_pump"
+        app:layout_constraintVertical_bias="0.478"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+
+    <TextView
+        android:id="@+id/shape_fan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="228dp"
+        android:background="@drawable/shape_devices"
+        android:drawableStart="@drawable/ic_fan"
+
+        android:drawablePadding="20sp"
+        android:paddingStart="20sp"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="@+id/shape_plants"
+        app:layout_constraintTop_toTopOf="@+id/shape_plants" />
+
+    <TextView
+        android:id="@+id/title_fan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="Fan"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_fan"
+        app:layout_constraintEnd_toEndOf="@+id/shape_fan"
+        app:layout_constraintHorizontal_bias="0.324"
+        app:layout_constraintStart_toStartOf="@+id/shape_fan"
+        app:layout_constraintTop_toTopOf="@+id/shape_fan" />
+
+
+    <Switch
+        android:id="@+id/sw_fan"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_fan"
+        app:layout_constraintEnd_toEndOf="@+id/shape_fan"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="@+id/shape_fan"
+        app:layout_constraintTop_toTopOf="@+id/shape_fan"
         app:layout_constraintVertical_bias="0.478"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 

@@ -61,10 +61,11 @@ public class Dashboard extends AppCompatActivity {
     TextView light, syncLight;
     TextView moisture, syncMoisture;
 
+    TextView dtem, dlight;
 
-    Button devices, settings;
+    Button devices, plants, schedule;
 
-    Button sample;
+
 
 
 
@@ -89,26 +90,21 @@ public class Dashboard extends AppCompatActivity {
 
         //asdaa
 
-        sample.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Random random = new Random();
-                int[] data = new int[4];
-                String[] topic = {"quocdungms/f/bbc-temp", "quocdungms/f/bbc-humid", "quocdungms/f/bbc-light", "quocdungms/f/bbc-mois"};
-                for (int i = 0; i < 4; i++) {
-                    data[i] = random.nextInt(100);
-                }
-                for (int j = 0; j < 4; j++) {
-                    sendDataToMQTT(topic[j], String.valueOf(data[j]));
-                }
-            }
-        });
+
 
 
         devices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Dashboard.this, Devices.class);
+                startActivity(intent);
+            }
+        });
+
+        plants.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Dashboard.this, Plants.class);
                 startActivity(intent);
             }
         });
@@ -156,9 +152,14 @@ public class Dashboard extends AppCompatActivity {
         syncMoisture = findViewById(R.id.syncMois);
 
         devices = findViewById(R.id.devices);
-        settings = findViewById(R.id.settings);
+        plants = findViewById(R.id.plants);
 
-        sample = findViewById(R.id.sample_data);
+        schedule = findViewById(R.id.schedule);
+
+        dtem = findViewById(R.id.dtemp);
+        dlight = findViewById(R.id.dlight);
+        dtem.setText(getSharedPreferences("plant", MODE_PRIVATE).getString("max_temp", "Nothing"));
+        dlight.setText(getSharedPreferences("plant", MODE_PRIVATE).getString("max_light", "Nothing"));
 
 
 

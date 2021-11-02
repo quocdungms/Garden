@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Plants">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ellipse_11"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0"
+
+        />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/undraw_playful_cat_re_bxiu_1"
+
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Welcome"
+
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.124" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="User name"
+
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/user_email"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/user_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:gravity="center"
+        android:text="user email"
+        android:textSize="15sp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_name" />
+
+    <TextView
+        android:id="@+id/shape_plants"
+        android:layout_width="359dp"
+        android:layout_height="550dp"
+        android:background="@drawable/home_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.486" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins"
+        android:text="Plants"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/shape_plants"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/plant_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:background="@drawable/shape_plants"
+        android:drawableStart="@drawable/ic_plant"
+        android:drawablePadding="10dp"
+        android:hint="Plant's Name"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins_light"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/shape_plants"
+        app:layout_constraintTop_toTopOf="@+id/shape_plants" />
+
+    <EditText
+        android:id="@+id/max_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:background="@drawable/shape_plants"
+        android:hint="Max Temperature"
+        android:textStyle="bold"
+        android:drawableStart="@drawable/ic_baseline_wb_sunny_24"
+        android:fontFamily="@font/poppins_light"
+        android:drawablePadding="10dp"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/shape_plants"
+        app:layout_constraintTop_toBottomOf="@+id/plant_name" />
+
+
+    <EditText
+        android:id="@+id/max_light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="15sp"
+        android:background="@drawable/shape_plants"
+        android:hint="Max Light Intensity"
+        android:textStyle="bold"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_baseline_wb_incandescent_24"
+        android:inputType="text"
+        android:fontFamily="@font/poppins_light"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/shape_plants"
+        app:layout_constraintTop_toBottomOf="@+id/max_temperature" />
+
+    <EditText
+        android:id="@+id/max_humidity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_plants"
+        android:hint="Max Humidity"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins_light"
+        android:drawableStart="@drawable/humidity"
+        android:drawablePadding="10dp"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/shape_plants"
+        app:layout_constraintTop_toBottomOf="@+id/max_light" />
+
+    <EditText
+        android:id="@+id/max_moisture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:background="@drawable/shape_plants"
+        android:hint="Max Moisture"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/poppins_light"
+        android:drawableStart="@drawable/soil_moisture"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/shape_plants"
+        app:layout_constraintTop_toBottomOf="@+id/max_humidity" />
+
+
+    <Button
+        android:id="@+id/apply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="64dp"
+        android:text="Apply"
+
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_plants"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
+        app:layout_constraintStart_toStartOf="@+id/shape_plants" />
+
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/none"
+        android:fontFamily="@font/poppins_light"
+        android:text="Home"
+        android:textAllCaps="false"
+        android:textColor="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_plants"
+        app:layout_constraintStart_toStartOf="@+id/shape_plants" />
+
+    <Button
+        android:id="@+id/devices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="12dp"
+        android:background="@color/none"
+        android:fontFamily="@font/poppins_light"
+        android:text="Devices"
+        android:textAllCaps="false"
+        android:textColor="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="@+id/home"
+        app:layout_constraintStart_toEndOf="@+id/home"
+        app:layout_constraintTop_toTopOf="@+id/home"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/schedule"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:background="@color/none"
+        android:fontFamily="@font/poppins_light"
+        android:text="Schedule"
+        android:textAllCaps="false"
+        android:textColor="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="@+id/devices"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/devices" />
+</androidx.constraintlayout.widget.ConstraintLayout>
