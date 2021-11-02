@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    tools:context=".Dashboard">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_9"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ellipse_11"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/undraw_playful_cat_re_bxiu_1"
+
+
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Welcome"
+
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.124" />
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="User name"
+
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/user_email"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/user_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:text="user email"
+        android:gravity="center"
+        android:textSize="15sp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_name" />
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:fontFamily="@font/poppins_light"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintVertical_bias="0.31"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        />
+
+
+
+    <ImageView
+        android:id="@+id/homeShape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/home_shape"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.73"
+
+        />
+
+
+    <!--    <com.github.mikephil.charting.charts.LineChart-->
+<!--        android:id="@+id/chart"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="300dp"-->
+
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.653"-->
+
+<!--        />-->
+
+    <ImageView
+        android:id="@+id/shapeTemp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+
+        android:background="@drawable/shape"
+        app:layout_constraintBottom_toBottomOf="@+id/homeShape"
+
+        app:layout_constraintEnd_toEndOf="@+id/homeShape"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/homeShape"
+        app:layout_constraintTop_toTopOf="@+id/homeShape"
+        app:layout_constraintVertical_bias="0.068" />
+
+    <ImageView
+        android:id="@+id/shapeHumid"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/shape"
+        app:layout_constraintBottom_toBottomOf="@+id/shapeTemp"
+
+        app:layout_constraintEnd_toEndOf="@+id/homeShape"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shapeTemp"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/shapeLight"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+
+        android:layout_marginTop="20dp"
+
+        android:background="@drawable/shape"
+        app:layout_constraintStart_toStartOf="@+id/shapeTemp"
+        app:layout_constraintTop_toBottomOf="@+id/shapeTemp"
+        />
+
+
+    <ImageView
+        android:id="@+id/shapeMois"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+
+        android:background="@drawable/shape"
+        app:layout_constraintEnd_toEndOf="@+id/shapeHumid"
+        app:layout_constraintTop_toTopOf="@+id/shapeLight" />
+
+
+    <TextView
+        android:id="@+id/titleHumid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:text="Humidity"
+        android:drawableStart="@drawable/humidity"
+        android:drawablePadding="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/shapeHumid"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/shapeHumid"
+        app:layout_constraintTop_toTopOf="@+id/shapeHumid"
+        />
+
+
+    <TextView
+        android:id="@+id/humid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:drawablePadding="5dp"
+
+        android:fontFamily="@font/poppins_medium"
+        android:text="Waiting"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/shapeHumid"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/shapeHumid"
+        app:layout_constraintTop_toBottomOf="@+id/titleHumid" />
+
+
+    <TextView
+        android:id="@+id/syncHumid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+
+        android:text="Waiting"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="@+id/shapeHumid"
+        app:layout_constraintStart_toStartOf="@+id/shapeHumid"
+        app:layout_constraintTop_toBottomOf="@+id/humid" />
+
+    <TextView
+        android:id="@+id/titleLight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:text="Light Intensity"
+        android:drawableStart="@drawable/ic_baseline_wb_incandescent_24"
+        android:drawablePadding="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/shapeLight"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/shapeLight"
+        app:layout_constraintTop_toTopOf="@+id/shapeLight"
+        />
+
+
+    <TextView
+        android:id="@+id/light"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:drawablePadding="5dp"
+
+        android:fontFamily="@font/poppins_medium"
+        android:text="Waiting"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/shapeLight"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/shapeLight"
+        app:layout_constraintTop_toBottomOf="@+id/titleLight" />
+
+
+    <TextView
+        android:id="@+id/syncLight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+
+        android:text="Waiting"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="@+id/shapeLight"
+        app:layout_constraintStart_toStartOf="@+id/shapeLight"
+        app:layout_constraintTop_toBottomOf="@+id/light" />
+
+
+    <TextView
+        android:id="@+id/titleMois"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:text="Soil Moisture"
+        android:drawableStart="@drawable/soil_moisture"
+        android:drawablePadding="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/shapeMois"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/shapeMois"
+        app:layout_constraintTop_toTopOf="@+id/shapeMois"
+        />
+
+
+    <TextView
+        android:id="@+id/mois"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:drawablePadding="5dp"
+
+        android:fontFamily="@font/poppins_medium"
+        android:text="Waiting"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/shapeMois"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/shapeMois"
+        app:layout_constraintTop_toBottomOf="@+id/titleMois" />
+
+
+    <TextView
+        android:id="@+id/syncMois"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+
+        android:text="Waiting"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="@+id/shapeMois"
+        app:layout_constraintStart_toStartOf="@+id/shapeMois"
+        app:layout_constraintTop_toBottomOf="@+id/mois" />
+
+
+
+    <TextView
+        android:id="@+id/titleTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/poppins"
+        android:text="Temperature"
+        android:drawableStart="@drawable/ic_baseline_wb_sunny_24"
+        android:drawablePadding="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/shapeTemp"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/shapeTemp"
+        app:layout_constraintTop_toTopOf="@+id/shapeTemp"
+        />
+
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:drawablePadding="5dp"
+
+        android:fontFamily="@font/poppins_medium"
+        android:text="Waiting"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/shapeTemp"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/shapeTemp"
+        app:layout_constraintTop_toBottomOf="@+id/titleTemp" />
+
+
+    <TextView
+        android:id="@+id/syncTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="center"
+
+        android:text="Waiting"
+        android:textSize="11sp"
+        app:layout_constraintEnd_toEndOf="@+id/shapeTemp"
+        app:layout_constraintStart_toStartOf="@+id/shapeTemp"
+        app:layout_constraintTop_toBottomOf="@+id/temp" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:text="Log out"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.947" />
+
+    <Button
+        android:id="@+id/test"
+<<<<<<< HEAD
+=======
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_light"
+        android:text="Test"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.887"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.958" />
+
+    <Button
+        android:id="@+id/sample_data"
+>>>>>>> 871908c53593965a781c80878ecc8f8204e9d00a
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="12dp"
+        android:background="@color/none"
+        android:fontFamily="@font/poppins_light"
+        android:text="Test"
+        android:textAllCaps="false"
+        android:textColor="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="@+id/settings"
+        app:layout_constraintEnd_toEndOf="@+id/homeShape"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/settings" />
+
+    <Button
+        android:id="@+id/devices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+
+        android:layout_marginBottom="12dp"
+        android:background="@color/none"
+        android:fontFamily="@font/poppins_light"
+        android:text="Devices"
+        android:textAllCaps="false"
+        android:textColor="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="@+id/homeShape"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/homeShape" />
+
+    <Button
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="24dp"
+        android:background="@color/none"
+        android:fontFamily="@font/poppins_light"
+        android:text="Settings"
+        android:textAllCaps="false"
+        android:textColor="@color/teal_700"
+        app:layout_constraintBottom_toBottomOf="@+id/devices"
+        app:layout_constraintStart_toEndOf="@+id/devices" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
