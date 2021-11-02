@@ -1,13 +1,13 @@
 package com.kevin.garden;
 
 import android.annotation.SuppressLint;
-<<<<<<< HEAD
+
 import android.content.Intent;
-=======
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
->>>>>>> 871908c53593965a781c80878ecc8f8204e9d00a
+
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -61,12 +61,12 @@ public class Dashboard extends AppCompatActivity {
     TextView light, syncLight;
     TextView moisture, syncMoisture;
 
-<<<<<<< HEAD
+
     Button devices, settings;
-=======
+
     Button sample;
-    Button test;
->>>>>>> 871908c53593965a781c80878ecc8f8204e9d00a
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,20 +89,20 @@ public class Dashboard extends AppCompatActivity {
 
         //asdaa
 
-//        sample.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Random random = new Random();
-//                int[] data = new int[4];
-//                String[] topic = {"quocdungms/f/bbc-temp", "quocdungms/f/bbc-humid", "quocdungms/f/bbc-light", "quocdungms/f/bbc-mois"};
-//                for (int i = 0; i < 4; i++) {
-//                    data[i] = random.nextInt(100);
-//                }
-//                for (int j = 0; j < 4; j++) {
-//                    sendDataToMQTT(topic[j], String.valueOf(data[j]));
-//                }
-//            }
-//        });
+        sample.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Random random = new Random();
+                int[] data = new int[4];
+                String[] topic = {"quocdungms/f/bbc-temp", "quocdungms/f/bbc-humid", "quocdungms/f/bbc-light", "quocdungms/f/bbc-mois"};
+                for (int i = 0; i < 4; i++) {
+                    data[i] = random.nextInt(100);
+                }
+                for (int j = 0; j < 4; j++) {
+                    sendDataToMQTT(topic[j], String.valueOf(data[j]));
+                }
+            }
+        });
 
 
         devices.setOnClickListener(new View.OnClickListener() {
@@ -127,13 +127,7 @@ public class Dashboard extends AppCompatActivity {
             }
         });
 
-        test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pushNotification("Alert", "Test notifications");
 
-            }
-        });
     }
 
     public void init()
@@ -164,9 +158,9 @@ public class Dashboard extends AppCompatActivity {
         devices = findViewById(R.id.devices);
         settings = findViewById(R.id.settings);
 
-//        sample = findViewById(R.id.sample_data);
+        sample = findViewById(R.id.sample_data);
 
-        test = findViewById(R.id.test);
+
 
 //        temp.setText(sharedPreferences.getString("temp", "Waiting"));
 //        syncTemp.setText("Last synced\n" + sharedPreferences.getString("syncTemp", "Waiting"));
@@ -203,7 +197,7 @@ public class Dashboard extends AppCompatActivity {
 
                 //SharedPreferences.Editor editor = sharedPreferences.edit();
                 if(topic.contains("temp")) {
-                    temperature.setText(message.toString());
+                    temperature.setText(message.toString() + " °C");
                     syncTemperature.setText("Last synced\n" + time);
 
                 }
