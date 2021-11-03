@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,9 +33,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.Charset;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.TimeZone;
@@ -62,7 +62,7 @@ public class Dashboard extends AppCompatActivity {
     TextView plantName;
     TextView maxTemp, maxHumid, maxLight, maxMois;
 
-    Button devices, plants, schedule, reload;
+    Button devices, plants, graph, reload;
 
     int MAX_TEMPERATUE = 0;
     int MAX_HUMIDITY = 0;
@@ -110,10 +110,23 @@ public class Dashboard extends AppCompatActivity {
             SharedPreferences preferences = getSharedPreferences("remember", MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("remember", "false");
+            editor.putString("logout", "true");
             editor.apply();
+
+            SharedPreferences s = getSharedPreferences("data_login", MODE_PRIVATE);
+            SharedPreferences.Editor editor1 = s.edit();
+            editor1.putBoolean("newSession", false);
+            editor1.apply();
             Toast.makeText(Dashboard.this, "Logged out!!!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Dashboard.this, MainActivity.class);
+            startActivity(intent);
             finish();
 
+        });
+
+        graph.setOnClickListener(v -> {
+            Intent intent = new Intent(Dashboard.this, Graph.class);
+            startActivity(intent);
         });
 
         reload.setOnClickListener(v -> {
@@ -155,7 +168,7 @@ public class Dashboard extends AppCompatActivity {
         devices = findViewById(R.id.devices);
         plants = findViewById(R.id.plants);
 
-        schedule = findViewById(R.id.schedule);
+        graph = findViewById(R.id.graph);
 
         maxTemp = findViewById(R.id.max_temperature);
         maxHumid = findViewById(R.id.max_humidity);
@@ -248,7 +261,8 @@ public class Dashboard extends AppCompatActivity {
                     syncTemperature.setText("Last synced\n" + time);
                     if(Integer.parseInt(message.toString()) > MAX_TEMPERATUE)
                     {
-                        pushNotification("Temperature", "sdhfjdasfj");
+                        pushNotification("High Temperature", "Current: " + message.toString()
+                                + " °C. Max: " + MAX_TEMPERATUE);
                     }
 
                 }
@@ -256,16 +270,31 @@ public class Dashboard extends AppCompatActivity {
                 {
                     humidity.setText(message.toString() + " %");
                     syncHumidity.setText("Last synced\n" + time);
+                    if(Integer.parseInt(message.toString()) > MAX_HUMIDITY)
+                    {
+                        pushNotification("High Humidity", "Current: " + message.toString()
+                                + " %. Max: " + MAX_HUMIDITY);
+                    }
                 }
                 else if(topic.contains("light"))
                 {
                     light.setText(message.toString() + " cd");
                     syncLight.setText("Last synced\n" + time);
+                    if(Integer.parseInt(message.toString()) > MAX_LIGHT)
+                    {
+                        pushNotification("High Light Intensity", "Current: " + message.toString()
+                                + " %. Max: " + MAX_LIGHT);
+                    }
                 }
                 else if(topic.contains("mois"))
                 {
                     moisture.setText(message.toString() + " %");
                     syncMoisture.setText("Last synced\n" + time);
+                    if(Integer.parseInt(message.toString()) > MAX_MOIS)
+                    {
+                        pushNotification("High Soil Moisture", "Current: " + message.toString()
+                                + " %. Max: " + MAX_MOIS);
+                    }
                 }
 //                else if(topic.contains("pump"))
 //                {
@@ -372,11 +401,22 @@ public class Dashboard extends AppCompatActivity {
 
                                     Log.d("mqtt", "time: "  + time);
 
+                                    DateFormat utc = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                    utc.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+                                    Date date = utc.parse(time);
+                                    DateFormat ptsFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                    ptsFormat.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
+                                    assert date != null;
+                                    String result = ptsFormat.format(date);
+                                    Log.d("mqtt", "result: " + result);
+
+
 
                                     if(feed_key.contains("temp"))
                                     {
                                         temperature.setText(value + " °C");
-                                        syncTemperature.setText("Last synced\n" + time);
+                                        syncTemperature.setText("Last synced\n" + result);
                                         if(Integer.parseInt(value) > MAX_TEMPERATUE)
                                         {
                                             pushNotification("High Temperature", "Curent: "
@@ -386,7 +426,7 @@ public class Dashboard extends AppCompatActivity {
                                     else if(feed_key.contains("humid"))
                                     {
                                         humidity.setText(value + " %");
-                                        syncHumidity.setText("Last synced\n" + time);
+                                        syncHumidity.setText("Last synced\n" + result);
                                         if(Integer.parseInt(value) > MAX_HUMIDITY)
                                         {
                                             pushNotification("High Humidity", "Curent: "
@@ -396,7 +436,7 @@ public class Dashboard extends AppCompatActivity {
                                     else if(feed_key.contains("light"))
                                     {
                                         light.setText(value + " cd");
-                                        syncLight.setText("Last synced\n" + time);
+                                        syncLight.setText("Last synced\n" + result);
                                         if(Integer.parseInt(value) > MAX_LIGHT)
                                         {
                                             pushNotification("High Light Intensity", "Curent: "
@@ -406,28 +446,24 @@ public class Dashboard extends AppCompatActivity {
                                     else if(feed_key.contains("mois"))
                                     {
                                         moisture.setText(value + " %");
-                                        syncMoisture.setText("Last synced\n" + time);
+                                        syncMoisture.setText("Last synced\n" + result);
                                         if(Integer.parseInt(value) > MAX_MOIS)
                                         {
                                             pushNotification("High soil moisture", "Curent: "
                                                     + value + " %. Max: " + MAX_MOIS + " %");
                                         }
                                     }
-                                } catch (JSONException e) {
+                                } catch (JSONException | ParseException e) {
                                     e.printStackTrace();
                                 }
                             }
                         }
-
-
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.d("mqtt", "nothing");
             }
-
-
         });
 
 

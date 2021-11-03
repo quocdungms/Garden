@@ -422,7 +422,7 @@
         app:layout_constraintVertical_bias="0.98" />
 
     <Button
-        android:id="@+id/schedule"
+        android:id="@+id/graph"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -430,7 +430,7 @@
         android:layout_marginEnd="12dp"
         android:background="@color/none"
         android:fontFamily="@font/poppins_light"
-        android:text="Schedule"
+        android:text="Graph"
         android:textAllCaps="false"
         android:textColor="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="@+id/plants"

@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     PhpAPI phpAPI;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +59,13 @@ public class MainActivity extends AppCompatActivity {
 
         if(remember.isChecked())
         {
-            login();
+            SharedPreferences sharedPreferences = getSharedPreferences("data_login", MODE_PRIVATE);
+            boolean flag = sharedPreferences.getBoolean("newSession", false);
+            if(flag)
+            {
+                login();
+            }
+
         }
 
         inputEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -156,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
                                 editor.putString("email", email);
                                 editor.putString("password", password);
                                 editor.putString("username", username);
+                                editor.putBoolean("newSession", true);
                                 editor.putBoolean("checked", true);
                                 editor.apply();
                             }
@@ -165,11 +174,13 @@ public class MainActivity extends AppCompatActivity {
                                 editor.remove("email");
                                 editor.remove("password");
                                 editor.remove("checked");
+                                editor.remove("newSession");
                                 editor.apply();
                             }
 
                             Intent intent = new Intent(MainActivity.this, Dashboard.class);
                             Toast.makeText(MainActivity.this, "Logged in", Toast.LENGTH_SHORT).show();
+
                             startActivity(intent);
                         }
                         if (response.contains("failure")) {

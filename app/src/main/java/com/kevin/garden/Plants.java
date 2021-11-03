@@ -13,8 +13,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.concurrent.ScheduledFuture;
-
 
 public class Plants extends AppCompatActivity {
 
@@ -26,7 +24,7 @@ public class Plants extends AppCompatActivity {
 
     Button apply;
 
-    Button home, devices, schedule;
+    Button home, devices, graph;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,10 +123,11 @@ public class Plants extends AppCompatActivity {
             }
         });
 
-        schedule.setOnClickListener(new View.OnClickListener() {
+        graph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(Plants.this, Graph.class);
+                startActivity(intent);
 
             }
         });
@@ -156,7 +155,7 @@ public class Plants extends AppCompatActivity {
 
         home = findViewById(R.id.home);
         devices = findViewById(R.id.devices);
-        schedule = findViewById(R.id.schedule);
+        graph = findViewById(R.id.graph);
     }
 
     public void hideKeyboard(View view) {

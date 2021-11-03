@@ -39,8 +39,9 @@
         <entry key="app/src/main/res/drawable/welcome.xml" value="0.23585526315789473" />
         <entry key="app/src/main/res/font-v26/poppins.xml" value="0.38645833333333335" />
         <entry key="app/src/main/res/font/poppins.xml" value="0.38645833333333335" />
-        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.3801945181255526" />
+        <entry key="app/src/main/res/layout/activity_dashboard.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_devices.xml" value="0.2256578947368421" />
+        <entry key="app/src/main/res/layout/activity_graph.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_plants.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.35625" />

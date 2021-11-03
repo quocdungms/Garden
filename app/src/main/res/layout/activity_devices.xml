@@ -103,16 +103,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="31dp"
         android:fontFamily="@font/poppins"
         android:text="Devices"
         android:textColor="#000000"
-        app:layout_constraintBottom_toTopOf="@+id/shape_plants"
         app:layout_constraintEnd_toEndOf="@+id/shape_plants"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/shape_plants"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.29000002" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/shape_awning"
@@ -239,7 +237,7 @@
 
 
     <Button
-        android:id="@+id/schedule"
+        android:id="@+id/graph"
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -247,7 +245,7 @@
         android:layout_marginEnd="12dp"
         android:background="@color/none"
         android:fontFamily="@font/poppins_light"
-        android:text="Schedule"
+        android:text="Graph"
         android:textAllCaps="false"
         android:textColor="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="@+id/plants"

@@ -38,7 +38,7 @@ public class Devices extends AppCompatActivity {
 
     Switch sw_pump, sw_awning, sw_fan;
 
-    Button home, plant, schedule;
+    Button home, plant, graph;
 
 
     MQTTHelper mqttHelper;
@@ -186,10 +186,11 @@ public class Devices extends AppCompatActivity {
             }
         });
 
-        schedule.setOnClickListener(new View.OnClickListener() {
+        graph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(Devices.this, Graph.class);
+                startActivity(intent);
             }
         });
 
@@ -208,7 +209,7 @@ public class Devices extends AppCompatActivity {
 
         home = findViewById(R.id.home);
         plant = findViewById(R.id.plants);
-        schedule = findViewById(R.id.schedule);
+        graph = findViewById(R.id.graph);
 
 
 
