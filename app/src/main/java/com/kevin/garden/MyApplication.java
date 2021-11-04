@@ -3,6 +3,7 @@ package com.kevin.garden;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.os.Build;
 
 public class MyApplication extends Application {
@@ -15,6 +16,7 @@ public class MyApplication extends Application {
     {
         super.onCreate();
         createNotificationChannel();
+        startService(new Intent(this, MyServices.class));
     }
 
     private void createNotificationChannel() {

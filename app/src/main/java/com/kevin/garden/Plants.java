@@ -22,7 +22,7 @@ public class Plants extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
 
-    Button apply;
+    Button min, medium, max;
 
     Button home, devices, graph;
 
@@ -69,7 +69,79 @@ public class Plants extends AppCompatActivity {
             }
         });
 
-        apply.setOnClickListener(new View.OnClickListener() {
+        min.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                String buffer = inputName.getText().toString();
+                if(!buffer.equals("")) {
+                    editor.putString("plant_name", buffer);
+                }
+
+
+                buffer = inputTemperature.getText().toString();
+                if(!buffer.equals("")){
+                    editor.putString("min_temp", buffer);
+                }
+
+                buffer = inputHumidity.getText().toString();
+                if(!buffer.equals("")){
+                    editor.putString("min_humid", buffer);
+                }
+
+                buffer = inputLight.getText().toString();
+                if(!buffer.equals("")){
+                    editor.putString("min_light", buffer);
+                }
+
+                buffer = inputMoisture.getText().toString();
+                if(!buffer.equals("")){
+                    editor.putString("min_mois", buffer);
+                }
+
+                editor.apply();
+                Toast.makeText(Plants.this, "Min values applied", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        medium.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                String buffer = inputName.getText().toString();
+                if(!buffer.equals("")) {
+                    editor.putString("plant_name", buffer);
+                }
+
+
+                buffer = inputTemperature.getText().toString();
+                if(!buffer.equals("")){
+                    editor.putString("medium_temp", buffer);
+                }
+
+                buffer = inputHumidity.getText().toString();
+                if(!buffer.equals("")){
+                    editor.putString("medium_humid", buffer);
+                }
+
+                buffer = inputLight.getText().toString();
+                if(!buffer.equals("")){
+                    editor.putString("medium_light", buffer);
+                }
+
+                buffer = inputMoisture.getText().toString();
+                if(!buffer.equals("")){
+                    editor.putString("medium_mois", buffer);
+                }
+
+                editor.apply();
+                Toast.makeText(Plants.this, "Min values applied", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        max.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -101,7 +173,7 @@ public class Plants extends AppCompatActivity {
                 }
 
                 editor.apply();
-                Toast.makeText(Plants.this, "Applied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Plants.this, "Max values applied", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -151,7 +223,9 @@ public class Plants extends AppCompatActivity {
         inputHumidity = findViewById(R.id.max_humidity);
         inputMoisture = findViewById(R.id.max_moisture);
 
-        apply = findViewById(R.id.apply);
+        min = findViewById(R.id.min);
+        medium = findViewById(R.id.medium);
+        max  = findViewById(R.id.max);
 
         home = findViewById(R.id.home);
         devices = findViewById(R.id.devices);

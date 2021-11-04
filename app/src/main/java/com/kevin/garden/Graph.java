@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -41,7 +43,7 @@ public class Graph extends AppCompatActivity {
     LineChart chart;
 
 
-    private int max = 5;
+    private int max = 10;
     private int count = 0;
 
     Button temp, humid, light, mois;
@@ -66,15 +68,27 @@ public class Graph extends AppCompatActivity {
 //        chart.invalidate();
 
         drawFeedsGraph("bbc-temp");
+        temp.setTextColor(Color.parseColor("#FF0000"));
+        humid.setTextColor(Color.parseColor("#000000"));
+        light.setTextColor(Color.parseColor("#000000"));
+        mois.setTextColor(Color.parseColor("#000000"));
 
         temp.setOnClickListener(v -> {
             drawFeedsGraph("bbc-temp");
+            temp.setTextColor(Color.parseColor("#FF0000"));
+            humid.setTextColor(Color.parseColor("#000000"));
+            light.setTextColor(Color.parseColor("#000000"));
+            mois.setTextColor(Color.parseColor("#000000"));
         });
 
         humid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawFeedsGraph("bbc-humid");
+                humid.setTextColor(Color.parseColor("#FF00BCD4"));
+                temp.setTextColor(Color.parseColor("#000000"));
+                light.setTextColor(Color.parseColor("#000000"));
+                mois.setTextColor(Color.parseColor("#000000"));
             }
         });
 
@@ -82,6 +96,10 @@ public class Graph extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawFeedsGraph("bbc-light");
+                temp.setTextColor(Color.parseColor("#000000"));
+                humid.setTextColor(Color.parseColor("#000000"));
+                light.setTextColor(Color.parseColor("#ECDA42"));
+                mois.setTextColor(Color.parseColor("#000000"));
             }
         });
 
@@ -89,6 +107,10 @@ public class Graph extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 drawFeedsGraph("bbc-mois");
+                temp.setTextColor(Color.parseColor("#000000"));
+                humid.setTextColor(Color.parseColor("#000000"));
+                light.setTextColor(Color.parseColor("#000000"));
+                mois.setTextColor(Color.parseColor("#CA451B"));
             }
         });
 
@@ -182,15 +204,15 @@ public class Graph extends AppCompatActivity {
                             ArrayList<Entry> dataVals = new ArrayList<Entry>();
                             int size = array.length();
                             if (size != 0) {
-                                if (max > size) {
-                                    count = size;
-                                    Log.d("mqtt", "count: " + count);
-                                } else {
-                                    count = max;
-                                }
+//                                if (max > size) {
+//                                    count = size;
+//                                    Log.d("mqtt", "count: " + count);
+//                                } else {
+//                                    count = max;
+//                                }
                                 String t = "";
                                 int left = 0;
-                                int index = 5;
+                                int index = 1;
                                 for (int i = size-max; i < size; i++) {
 
                                     t = array.getString(i).toString();
@@ -209,18 +231,63 @@ public class Graph extends AppCompatActivity {
                                 if(feed_key.contains("temp"))
                                 {
                                     lineDataSet = new LineDataSet(dataVals, "Temperature");
+                                    lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+                                    lineDataSet.setColor(Color.rgb(255, 0, 0));
+                                    //set.setCircleColor(Color.WHITE);
+                                    lineDataSet.setLineWidth(2f);
+                                    //set.setCircleRadius(4f);
+                                    lineDataSet.setFillAlpha(65);
+                                    lineDataSet.setFillColor(Color.rgb(255, 0, 0));
+                                    lineDataSet.setHighLightColor(Color.rgb(255, 0, 0));
+                                    lineDataSet.setValueTextColor(Color.rgb(255, 0, 0));
+                                    lineDataSet.setValueTextSize(9f);
+                                    lineDataSet.setDrawValues(false);
                                 }
                                 else if(feed_key.contains("humid"))
                                 {
                                     lineDataSet = new LineDataSet(dataVals, "Humidity");
+                                    lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+                                    lineDataSet.setColor(Color.rgb(0, 188, 212));
+                                    //set.setCircleColor(Color.WHITE);
+                                    lineDataSet.setLineWidth(2f);
+                                    //set.setCircleRadius(4f);
+                                    lineDataSet.setFillAlpha(65);
+                                    lineDataSet.setFillColor(Color.rgb(255, 0, 0));
+                                    lineDataSet.setHighLightColor(Color.rgb(255, 0, 0));
+                                    lineDataSet.setValueTextColor(Color.rgb(255, 0, 0));
+                                    lineDataSet.setValueTextSize(9f);
+                                    lineDataSet.setDrawValues(false);
                                 }
                                 else if (feed_key.contains("light"))
                                 {
                                     lineDataSet = new LineDataSet(dataVals, "Light Intensity");
+
+                                    lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+                                    lineDataSet.setColor(Color.rgb(238, 216, 88));
+                                    //set.setCircleColor(Color.WHITE);
+                                    lineDataSet.setLineWidth(2f);
+                                    //set.setCircleRadius(4f);
+                                    lineDataSet.setFillAlpha(65);
+                                    lineDataSet.setFillColor(Color.rgb(255, 0, 0));
+                                    lineDataSet.setHighLightColor(Color.rgb(255, 0, 0));
+                                    lineDataSet.setValueTextColor(Color.rgb(255, 0, 0));
+                                    lineDataSet.setValueTextSize(9f);
+                                    lineDataSet.setDrawValues(false);
                                 }
                                 else if(feed_key.contains("mois"))
                                 {
                                     lineDataSet = new LineDataSet(dataVals, "Soil Moisture");
+                                    lineDataSet.setAxisDependency(YAxis.AxisDependency.LEFT);
+                                    lineDataSet.setColor(Color.rgb(202, 69, 27));
+                                    //set.setCircleColor(Color.WHITE);
+                                    lineDataSet.setLineWidth(2f);
+                                    //set.setCircleRadius(4f);
+                                    lineDataSet.setFillAlpha(65);
+                                    lineDataSet.setFillColor(Color.rgb(255, 0, 0));
+                                    lineDataSet.setHighLightColor(Color.rgb(255, 0, 0));
+                                    lineDataSet.setValueTextColor(Color.rgb(255, 0, 0));
+                                    lineDataSet.setValueTextSize(9f);
+                                    lineDataSet.setDrawValues(false);
                                 }
 
 
@@ -229,10 +296,6 @@ public class Graph extends AppCompatActivity {
                                 LineData data = new LineData(dataSets);
                                 chart.setData(data);
                                 chart.invalidate();
-
-
-
-
 
                             } else {
                                 Toast.makeText(Graph.this, "No data", Toast.LENGTH_SHORT).show();
@@ -254,11 +317,6 @@ public class Graph extends AppCompatActivity {
         });
 
         queue.add(stringRequest);
-
-
-
-
-
     }
 
 }

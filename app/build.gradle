@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 28
 
     defaultConfig {
         applicationId "com.kevin.garden"

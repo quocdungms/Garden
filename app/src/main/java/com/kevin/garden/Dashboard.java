@@ -60,14 +60,26 @@ public class Dashboard extends AppCompatActivity {
 
 
     TextView plantName;
-    TextView maxTemp, maxHumid, maxLight, maxMois;
+    TextView mediumTemp, mediumHumid, mediumLight, mediumMois;
 
     Button devices, plants, graph, reload;
 
-    int MAX_TEMPERATUE = 0;
-    int MAX_HUMIDITY = 0;
-    int MAX_LIGHT = 0;
-    int MAX_MOIS = 0;
+    float MAX_TEMPERATUE = 0;
+    float MAX_HUMIDITY = 0;
+    float MAX_LIGHT = 0;
+    float MAX_MOIS = 0;
+
+    float MIN_TEMPERATUE = 0;
+    float MIN_HUMIDITY = 0;
+    float MIN_LIGHT = 0;
+    float MIN_MOIS = 0;
+
+    float MEDIUM_TEMPERATUE = 0;
+    float MEDIUM_HUMIDITY = 0;
+    float MEDIUM_LIGHT = 0;
+    float MEDIUM_MOIS = 0;
+
+
 
 
 
@@ -170,48 +182,21 @@ public class Dashboard extends AppCompatActivity {
 
         graph = findViewById(R.id.graph);
 
-        maxTemp = findViewById(R.id.max_temperature);
-        maxHumid = findViewById(R.id.max_humidity);
-        maxLight = findViewById(R.id.max_light);
-        maxMois = findViewById(R.id.max_moisture);
+        mediumTemp = findViewById(R.id.medium_temperature);
+        mediumHumid = findViewById(R.id.medium_humidity);
+        mediumLight = findViewById(R.id.medium_light);
+        mediumMois = findViewById(R.id.medium_moisture);
+
+
+        getPlantDetails();
+//        mediumLight.setText(getSharedPreferences("plant", MODE_PRIVATE)
+//                .getString("max_light", "####") + " cd");
+//        mediumMois.setText(getSharedPreferences("plant", MODE_PRIVATE)
+//                .getString("max_mois", "####") + " %");
 
 
 
-        maxLight.setText(getSharedPreferences("plant", MODE_PRIVATE)
-                .getString("max_light", "####") + " cd");
-        maxMois.setText(getSharedPreferences("plant", MODE_PRIVATE)
-                .getString("max_mois", "####") + " %");
 
-        String buffer = getSharedPreferences("plant", MODE_PRIVATE).getString("max_temp", "####");
-        if(!buffer.equals("####"))
-        {
-            MAX_TEMPERATUE = Integer.parseInt(buffer);
-        }
-        maxTemp.setText(buffer + " °C");
-
-        buffer = getSharedPreferences("plant", MODE_PRIVATE)
-                        .getString("max_humid", "####");
-        if(!buffer.equals("####"))
-        {
-            MAX_HUMIDITY = Integer.parseInt(buffer);
-        }
-        maxHumid.setText(buffer + " %");
-
-        buffer = getSharedPreferences("plant", MODE_PRIVATE)
-                .getString("max_light", "####");
-        if(!buffer.equals("####"))
-        {
-            MAX_LIGHT = Integer.parseInt(buffer);
-        }
-        maxLight.setText(buffer + " cd");
-
-        buffer = getSharedPreferences("plant", MODE_PRIVATE)
-                .getString("max_mois", "####");
-        if(!buffer.equals("####"))
-        {
-            MAX_MOIS = Integer.parseInt(buffer);
-        }
-        maxMois.setText(buffer + " %");
 
 
 
@@ -247,7 +232,7 @@ public class Dashboard extends AppCompatActivity {
 
                 Log.d("mqtt", "Message: " + message.toString());
 
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 LocalDateTime now = LocalDateTime.now();
                 String time = dtf.format(now);
 
@@ -259,10 +244,12 @@ public class Dashboard extends AppCompatActivity {
                 if(topic.contains("temp")) {
                     temperature.setText(message.toString() + " °C");
                     syncTemperature.setText("Last synced\n" + time);
-                    if(Integer.parseInt(message.toString()) > MAX_TEMPERATUE)
+                    if(Float.parseFloat(message.toString()) > MAX_TEMPERATUE)
                     {
                         pushNotification("High Temperature", "Current: " + message.toString()
                                 + " °C. Max: " + MAX_TEMPERATUE);
+                        //turnOnFan(10000);
+                        closeAwning();
                     }
 
                 }
@@ -270,30 +257,42 @@ public class Dashboard extends AppCompatActivity {
                 {
                     humidity.setText(message.toString() + " %");
                     syncHumidity.setText("Last synced\n" + time);
-                    if(Integer.parseInt(message.toString()) > MAX_HUMIDITY)
+                    if(Float.parseFloat(message.toString()) > MAX_HUMIDITY)
                     {
                         pushNotification("High Humidity", "Current: " + message.toString()
                                 + " %. Max: " + MAX_HUMIDITY);
+                        turnOnFan(10000);
                     }
+
                 }
                 else if(topic.contains("light"))
                 {
                     light.setText(message.toString() + " cd");
                     syncLight.setText("Last synced\n" + time);
-                    if(Integer.parseInt(message.toString()) > MAX_LIGHT)
+                    if(Float.parseFloat(message.toString()) > MAX_LIGHT)
                     {
                         pushNotification("High Light Intensity", "Current: " + message.toString()
                                 + " %. Max: " + MAX_LIGHT);
+                        closeAwning();
                     }
+
+
                 }
                 else if(topic.contains("mois"))
                 {
                     moisture.setText(message.toString() + " %");
                     syncMoisture.setText("Last synced\n" + time);
-                    if(Integer.parseInt(message.toString()) > MAX_MOIS)
+                    if(Float.parseFloat(message.toString()) > MAX_MOIS)
                     {
                         pushNotification("High Soil Moisture", "Current: " + message.toString()
                                 + " %. Max: " + MAX_MOIS);
+
+                    }
+                    else if(Float.parseFloat(message.toString()) < MIN_MOIS)
+                    {
+                        pushNotification("Low Soil Moisture", "Current: " + message.toString()
+                                + " %. Min: " + MIN_MOIS);
+                        turnOnPump(10000);
                     }
                 }
 //                else if(topic.contains("pump"))
@@ -342,7 +341,6 @@ public class Dashboard extends AppCompatActivity {
 
     public void pushNotification(String title, String text)
     {
-
 
         Notification notification = new NotificationCompat.Builder(this, MyApplication.CHANNEL_ID)
                 .setContentTitle(title)
@@ -419,8 +417,9 @@ public class Dashboard extends AppCompatActivity {
                                         syncTemperature.setText("Last synced\n" + result);
                                         if(Integer.parseInt(value) > MAX_TEMPERATUE)
                                         {
-                                            pushNotification("High Temperature", "Curent: "
+                                            pushNotification("High Temperature", "Current: "
                                                     + value + " °C. Max: " + MAX_TEMPERATUE + " °C");
+                                            closeAwning();
                                         }
                                     }
                                     else if(feed_key.contains("humid"))
@@ -429,8 +428,9 @@ public class Dashboard extends AppCompatActivity {
                                         syncHumidity.setText("Last synced\n" + result);
                                         if(Integer.parseInt(value) > MAX_HUMIDITY)
                                         {
-                                            pushNotification("High Humidity", "Curent: "
+                                            pushNotification("High Humidity", "Current: "
                                                     + value + " %. Max: " + MAX_HUMIDITY + " %");
+                                            turnOnFan(10000);
                                         }
                                     }
                                     else if(feed_key.contains("light"))
@@ -439,8 +439,9 @@ public class Dashboard extends AppCompatActivity {
                                         syncLight.setText("Last synced\n" + result);
                                         if(Integer.parseInt(value) > MAX_LIGHT)
                                         {
-                                            pushNotification("High Light Intensity", "Curent: "
+                                            pushNotification("High Light Intensity", "Current: "
                                                     + value + " cd. Max: " + MAX_LIGHT + " cd");
+                                            closeAwning();
                                         }
                                     }
                                     else if(feed_key.contains("mois"))
@@ -449,11 +450,17 @@ public class Dashboard extends AppCompatActivity {
                                         syncMoisture.setText("Last synced\n" + result);
                                         if(Integer.parseInt(value) > MAX_MOIS)
                                         {
-                                            pushNotification("High soil moisture", "Curent: "
+                                            pushNotification("High soil moisture", "Current: "
                                                     + value + " %. Max: " + MAX_MOIS + " %");
                                         }
+                                        else if(Float.parseFloat(value) < MIN_MOIS)
+                                        {
+                                            pushNotification("Low soil moisture", "Current: "
+                                                    + value + " %. Min: " + MIN_MOIS + " %");
+                                            turnOnPump(10000);
+                                        }
                                     }
-                                } catch (JSONException | ParseException e) {
+                                } catch (JSONException | ParseException | InterruptedException e) {
                                     e.printStackTrace();
                                 }
                             }
@@ -474,5 +481,107 @@ public class Dashboard extends AppCompatActivity {
     {
         int vTemp = Integer.parseInt(temperature.getText().toString());
         Log.d("mqtt", "Vtemp: " + vTemp);
+    }
+    public void getPlantDetails()
+    {
+        SharedPreferences sp = getSharedPreferences("plant", MODE_PRIVATE);
+        String buffer = sp.getString("medium_temp", "37");
+        if(!buffer.equals("37"))
+        {
+            MEDIUM_TEMPERATUE = Float.parseFloat(buffer);
+        }
+        mediumTemp.setText(buffer + " °C");
+
+        buffer = sp.getString("medium_humid", "70");
+        if(!buffer.equals("70"))
+        {
+            MEDIUM_HUMIDITY = Float.parseFloat(buffer);
+        }
+        mediumHumid.setText(buffer + " %");
+
+        buffer = sp.getString("medium_light", "50");
+        if(!buffer.equals("50"))
+        {
+            MEDIUM_LIGHT = Float.parseFloat(buffer);
+        }
+        mediumLight.setText(buffer + " cd");
+
+        buffer = sp.getString("medium_mois", "67");
+        if(!buffer.equals("67"))
+        {
+            MEDIUM_MOIS = Float.parseFloat(buffer);
+        }
+        mediumMois.setText(buffer + " %");
+
+
+        buffer = sp.getString("max_temp", "100");
+        if(!buffer.equals("100"))
+        {
+            MAX_TEMPERATUE = Float.parseFloat(buffer);
+        }
+        buffer = sp.getString("max_humid", "100");
+        if(!buffer.equals("100"))
+        {
+            MAX_HUMIDITY = Float.parseFloat(buffer);
+        }
+        buffer = sp.getString("max_light", "100");
+        if(!buffer.equals("100"))
+        {
+            MAX_LIGHT = Float.parseFloat(buffer);
+        }
+        buffer = sp.getString("max_mois", "100");
+        if(!buffer.equals("100"))
+        {
+            MAX_MOIS = Float.parseFloat(buffer);
+        }
+
+        buffer = sp.getString("min_temp", "0");
+        if(!buffer.equals("0"))
+        {
+            MIN_TEMPERATUE = Float.parseFloat(buffer);
+        }
+        buffer = sp.getString("max_humid", "0");
+        if(!buffer.equals("0"))
+        {
+            MIN_HUMIDITY = Float.parseFloat(buffer);
+        }
+        buffer = sp.getString("max_light", "0");
+        if(!buffer.equals("0"))
+        {
+            MIN_LIGHT = Float.parseFloat(buffer);
+        }
+        buffer = sp.getString("max_mois", "0");
+        if(!buffer.equals("0"))
+        {
+            MIN_MOIS = Float.parseFloat(buffer);
+        }
+
+    }
+    public void turnOnPump(int miliSecond) throws InterruptedException {
+        sendDataToMQTT("bbc-pump", "1");
+        Toast.makeText(Dashboard.this, "Turn on pump " + miliSecond/1000 + "s", Toast.LENGTH_SHORT).show();
+        pushNotification("Low soil moisture", "Turn on pump " + miliSecond/1000 + "s");
+        Thread.sleep(miliSecond);
+        sendDataToMQTT("bbc-pump", "0");
+    }
+
+    public void turnOnFan(int miliSecond) throws InterruptedException {
+        sendDataToMQTT("quocdungms/feeds/bbc-fan", "1");
+        Toast.makeText(Dashboard.this, "Turn on fan " + miliSecond/1000 + "s", Toast.LENGTH_SHORT).show();
+        pushNotification("High humuity", "Turn on fan " + miliSecond/1000 + "s");
+        Thread.sleep(miliSecond);
+        sendDataToMQTT("quocdungms/feeds/bbc-fan", "0");
+    }
+
+    public void openAwning(){
+        sendDataToMQTT("bbc-awning", "1");
+        Toast.makeText(Dashboard.this, "Open awning ",Toast.LENGTH_SHORT).show();
+        pushNotification("Low light intensity", "Open awning ");
+    }
+
+    public void closeAwning(){
+        sendDataToMQTT("bbc-awning", "1");
+        Toast.makeText(Dashboard.this, "Close awning ",Toast.LENGTH_SHORT).show();
+        pushNotification("High light intensity", "Close awning ");
     }
 }

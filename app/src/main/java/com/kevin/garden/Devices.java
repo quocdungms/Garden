@@ -298,8 +298,6 @@ public class Devices extends AppCompatActivity {
 
                             }
                         }
-
-
                     }
                 }, new Response.ErrorListener() {
             @Override

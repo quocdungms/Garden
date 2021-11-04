@@ -260,7 +260,7 @@
         app:layout_constraintEnd_toEndOf="@+id/shapeHumid"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/shapeHumid"
-        app:layout_constraintTop_toBottomOf="@+id/max_humidity" />
+        app:layout_constraintTop_toBottomOf="@+id/medium_humidity" />
 
     <TextView
         android:id="@+id/titleLight"
@@ -308,7 +308,7 @@
         app:layout_constraintEnd_toEndOf="@+id/shapeLight"
         app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="@+id/shapeLight"
-        app:layout_constraintTop_toBottomOf="@+id/max_light" />
+        app:layout_constraintTop_toBottomOf="@+id/medium_light" />
 
     <TextView
         android:id="@+id/titleMois"
@@ -356,7 +356,7 @@
         app:layout_constraintEnd_toEndOf="@+id/shapeMois"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/shapeMois"
-        app:layout_constraintTop_toBottomOf="@+id/max_moisture" />
+        app:layout_constraintTop_toBottomOf="@+id/medium_moisture" />
 
     <TextView
         android:id="@+id/titleTemp"
@@ -404,7 +404,7 @@
         app:layout_constraintEnd_toEndOf="@+id/shapeTemp"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/shapeTemp"
-        app:layout_constraintTop_toBottomOf="@+id/max_temperature" />
+        app:layout_constraintTop_toBottomOf="@+id/medium_temperature" />
 
     <Button
         android:id="@+id/logout"
@@ -470,49 +470,49 @@
 
 
     <TextView
-        android:id="@+id/max_temperature"
+        android:id="@+id/medium_temperature"
         android:layout_width="50dp"
         android:layout_height="20dp"
         android:layout_marginTop="5dp"
         android:gravity="center"
 
-        android:text="max"
+        android:text="medium"
         app:layout_constraintEnd_toEndOf="@+id/shapeTemp"
         app:layout_constraintStart_toStartOf="@+id/shapeTemp"
         app:layout_constraintTop_toBottomOf="@+id/temp" />
 
     <TextView
-        android:id="@+id/max_humidity"
+        android:id="@+id/medium_humidity"
         android:layout_width="50dp"
         android:layout_height="20dp"
         android:layout_marginTop="5dp"
         android:gravity="center"
 
-        android:text="max"
+        android:text="medium"
         app:layout_constraintEnd_toEndOf="@+id/shapeHumid"
         app:layout_constraintStart_toStartOf="@+id/shapeHumid"
         app:layout_constraintTop_toBottomOf="@+id/humid" />
 
     <TextView
-        android:id="@+id/max_light"
+        android:id="@+id/medium_light"
         android:layout_width="50dp"
         android:layout_height="20dp"
         android:layout_marginTop="5dp"
         android:gravity="center"
 
-        android:text="max"
+        android:text="medium"
         app:layout_constraintEnd_toEndOf="@+id/shapeLight"
         app:layout_constraintStart_toStartOf="@+id/shapeLight"
         app:layout_constraintTop_toBottomOf="@+id/light" />
 
     <TextView
-        android:id="@+id/max_moisture"
+        android:id="@+id/medium_moisture"
         android:layout_width="50dp"
         android:layout_height="20dp"
         android:layout_marginTop="5dp"
         android:gravity="center"
 
-        android:text="max"
+        android:text="medium"
         app:layout_constraintEnd_toEndOf="@+id/shapeMois"
         app:layout_constraintStart_toStartOf="@+id/shapeMois"
         app:layout_constraintTop_toBottomOf="@+id/mois" />

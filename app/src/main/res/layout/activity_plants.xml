@@ -136,15 +136,16 @@
         android:id="@+id/max_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_marginTop="20dp"
         android:textSize="15sp"
         android:background="@drawable/shape_plants"
-        android:hint="Max Temperature"
+        android:hint="Temperature"
         android:textStyle="bold"
         android:drawableStart="@drawable/ic_baseline_wb_sunny_24"
         android:fontFamily="@font/poppins_light"
         android:drawablePadding="10dp"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:paddingStart="10dp"
         app:layout_constraintEnd_toEndOf="@+id/shape_plants"
         app:layout_constraintHorizontal_bias="0.491"
@@ -159,11 +160,11 @@
         android:layout_marginTop="20dp"
         android:textSize="15sp"
         android:background="@drawable/shape_plants"
-        android:hint="Max Light Intensity"
+        android:hint="Light intensity"
         android:textStyle="bold"
         android:drawablePadding="10dp"
         android:drawableStart="@drawable/ic_baseline_wb_incandescent_24"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:fontFamily="@font/poppins_light"
         android:paddingStart="10dp"
         app:layout_constraintEnd_toEndOf="@+id/shape_plants"
@@ -177,13 +178,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_plants"
-        android:hint="Max Humidity"
+        android:hint="Humidity"
         android:textStyle="bold"
         android:textSize="15sp"
         android:fontFamily="@font/poppins_light"
         android:drawableStart="@drawable/humidity"
         android:drawablePadding="10dp"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:paddingStart="10dp"
         app:layout_constraintEnd_toEndOf="@+id/shape_plants"
         app:layout_constraintHorizontal_bias="0.491"
@@ -198,11 +199,11 @@
         android:textStyle="bold"
         android:textSize="15sp"
         android:background="@drawable/shape_plants"
-        android:hint="Max Moisture"
+        android:hint="Soil Moisture"
         android:drawablePadding="10dp"
         android:fontFamily="@font/poppins_light"
         android:drawableStart="@drawable/soil_moisture"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:paddingStart="10dp"
         app:layout_constraintEnd_toEndOf="@+id/shape_plants"
         app:layout_constraintHorizontal_bias="0.491"
@@ -211,12 +212,26 @@
 
 
     <Button
-        android:id="@+id/apply"
+        android:id="@+id/min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
         android:layout_marginBottom="64dp"
-        android:text="Apply"
+        android:text="Min"
+
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_plants"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
+        app:layout_constraintHorizontal_bias="0.107"
+        app:layout_constraintStart_toStartOf="@+id/shape_plants" />
+
+    <Button
+        android:id="@+id/medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="64dp"
+        android:text="Medium"
 
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/shape_plants"
@@ -237,6 +252,20 @@
         android:textAllCaps="false"
         android:textColor="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="@+id/shape_plants"
+        app:layout_constraintStart_toStartOf="@+id/shape_plants" />
+
+    <Button
+        android:id="@+id/max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="64dp"
+        android:text="Max"
+
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/shape_plants"
+        app:layout_constraintEnd_toEndOf="@+id/shape_plants"
+        app:layout_constraintHorizontal_bias="0.889"
         app:layout_constraintStart_toStartOf="@+id/shape_plants" />
 
     <Button
